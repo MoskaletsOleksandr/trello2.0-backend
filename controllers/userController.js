@@ -52,7 +52,7 @@ const login = async (req, res, next) => {
     throw HttpError(401, errorMessage);
   }
 
-  const payload = createPayload(newUser._id);
+  const payload = createPayload(user._id);
   const tokens = generateTokens(payload);
   await saveToken(user._id, tokens.refreshToken);
 
