@@ -3,15 +3,11 @@ import Token from '../models/token.js';
 
 const { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY } = process.env;
 
-export const generateTokens = (payload) => {
-  console.log(
-    'ACCESS_SECRET_KEY, REFRESH_SECRET_KEY:',
-    ACCESS_SECRET_KEY,
-    REFRESH_SECRET_KEY
-  );
+export const createPayload = (id) => ({ id });
 
+export const generateTokens = (payload) => {
   const accessToken = jwt.sign(payload, ACCESS_SECRET_KEY, {
-    expiresIn: '30m',
+    expiresIn: '2m',
   });
   const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
     expiresIn: '30d',
@@ -32,4 +28,32 @@ export const saveToken = async (userId, refreshToken) => {
 
   const token = await Token.create({ user: userId, refreshToken });
   return token;
+};
+
+export const removeToken = async (refreshToken) => {
+  const tokenData = await Token.deleteOne({ refreshToken });
+  return tokenData;
+};
+
+export const findToken = async (refreshToken) => {
+  const tokenData = await Token.findOne({ refreshToken });
+  return tokenData;
+};
+
+export const validateAccessToken = (token) => {
+  try {
+    const userData = jwt.verify(token, ACCESS_SECRET_KEY);
+    return userData;
+  } catch (error) {
+    return null;
+  }
+};
+
+export const validateRefreshToken = (token) => {
+  try {
+    const userData = jwt.verify(token, REFRESH_SECRET_KEY);
+    return userData;
+  } catch (error) {
+    return null;
+  }
 };
