@@ -89,7 +89,7 @@ const refresh = async (req, res, next) => {
 
   const user = await User.findById(userData.id);
 
-  const payload = createPayload(newUser._id);
+  const payload = createPayload(user._id);
   const tokens = generateTokens(payload);
   await saveToken(user._id, tokens.refreshToken);
 
