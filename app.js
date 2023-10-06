@@ -1,6 +1,5 @@
 import express from 'express';
 import logger from 'morgan';
-import cors from 'cors';
 import userRouter from './routes/userRouter.js';
 import cookieParser from 'cookie-parser';
 
@@ -11,12 +10,10 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 app.use(logger(formatsLogger));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
-  // Додайте інші необхідні заголовки
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
   );
-  // Дозволити використання облікових даних
   res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
