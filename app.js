@@ -12,9 +12,13 @@ app.use(logger(formatsLogger));
 app.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:5173',
+    origin: ['http://localhost:5173', 'https://moskaletsoleksandr.github.io'],
   })
 );
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   next();
+// });
 
 app.use(cookieParser());
 app.use(express.json());
