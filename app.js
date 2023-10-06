@@ -2,21 +2,19 @@ import express from 'express';
 import logger from 'morgan';
 import userRouter from './routes/userRouter.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 const app = express();
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 
 app.use(logger(formatsLogger));
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  );
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+app.use(
+  cors({
+    credentials: true,
+    origin: 'http://localhost:5173',
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
