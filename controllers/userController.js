@@ -109,9 +109,23 @@ const refresh = async (req, res, next) => {
   });
 };
 
-const getUsers = async (req, res, next) => {
-  const users = await User.find();
-  res.json(users);
+const updateTheme = async (req, res, next) => {
+  const { theme } = req.body;
+  const { id } = req.user;
+  const user = await User.findByIdAndUpdate(
+    id,
+    { theme: theme },
+    { new: true }
+  );
+
+  if (!user) {
+    throw HttpError(401, `User with ${id} not found`);
+  }
+
+  res.status(200).json({
+    id,
+    theme,
+  });
 };
 
 export default {
@@ -119,5 +133,5 @@ export default {
   login: ctrlWrapper(login),
   logout: ctrlWrapper(logout),
   refresh: ctrlWrapper(refresh),
-  getUsers: ctrlWrapper(getUsers),
+  updateTheme: ctrlWrapper(updateTheme),
 };

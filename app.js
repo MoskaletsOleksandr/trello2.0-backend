@@ -13,7 +13,11 @@ app.use(logger(formatsLogger));
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:5173', 'https://moskaletsoleksandr.github.io'],
+    origin: [
+      'http://localhost:5173',
+      'https://moskaletsoleksandr.github.io',
+      'http://localhost:4173',
+    ],
   })
 );
 

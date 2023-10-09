@@ -12,6 +12,6 @@ userRouter.post('/logout', userController.logout);
 
 userRouter.get('/refresh', userController.refresh);
 
-userRouter.get('/users', authenticate, userController.getUsers);
+userRouter.patch('/theme', authenticate, userController.updateTheme);
 
 export default userRouter;
