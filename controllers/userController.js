@@ -119,12 +119,31 @@ const updateTheme = async (req, res, next) => {
   );
 
   if (!user) {
-    throw HttpError(401, `User with ${id} not found`);
+    throw HttpError(401, `User with id ${id} not found`);
   }
 
   res.status(200).json({
     id,
     theme,
+  });
+};
+
+const updateCurrentBoardId = async (req, res, next) => {
+  const { boardId } = req.body;
+  const { id } = req.user;
+  const user = await User.findByIdAndUpdate(
+    id,
+    { currentBoardId: boardId },
+    { new: true }
+  );
+
+  if (!user) {
+    throw HttpError(401, `User with id ${id} not found`);
+  }
+
+  res.status(200).json({
+    id,
+    boardId,
   });
 };
 
@@ -134,4 +153,5 @@ export default {
   logout: ctrlWrapper(logout),
   refresh: ctrlWrapper(refresh),
   updateTheme: ctrlWrapper(updateTheme),
+  updateCurrentBoardId: ctrlWrapper(updateCurrentBoardId),
 };

@@ -14,4 +14,6 @@ userRouter.get('/refresh', userController.refresh);
 
 userRouter.patch('/theme', authenticate, userController.updateTheme);
 
+userRouter.patch('/board', authenticate, userController.updateCurrentBoardId);
+
 export default userRouter;

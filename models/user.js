@@ -19,6 +19,9 @@ const userSchema = new Schema(
       enum: ['dark', 'light', 'violet'],
       default: 'dark',
     },
+    currentBoardId: {
+      type: String,
+    },
   },
   { versionKey: false, timestamps: true }
 );

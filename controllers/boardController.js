@@ -1,4 +1,6 @@
+import backgrounds from '../data/backgrounds/backgrounds.js';
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
+import HttpError from '../helpers/HttpError.js';
 import Board from '../models/board.js';
 
 const getAllBoards = async (req, res, next) => {
@@ -7,54 +9,108 @@ const getAllBoards = async (req, res, next) => {
   res.status(200).json(boards);
 };
 
+const getBoardById = async (req, res, next) => {
+  const { boardId } = req.params;
+  const board = await Board.findById(boardId);
+
+  if (!board) {
+    throw HttpError(404, 'Board not found');
+  }
+
+  res.status(200).json(board);
+};
+
 const createNewBoard = async (req, res, next) => {
   const { id } = req.user;
-  const { title } = req.body;
+  const { title, backgroundId } = req.body;
+  const normalizedTitle = title.trim();
 
-  const board = await Board.findOne({ title });
+  const board = await Board.findOne({ normalizedTitle });
   if (board) {
     throw HttpError(409, 'A board with the same title already exists');
   }
 
+  const background =
+    backgrounds.find((background) => background._id === backgroundId) || null;
+
   const newBoard = await Board.create({
     ...req.body,
+    title: normalizedTitle,
     ownerId: `${id}`,
+    background,
   });
 
   res.status(201).json(newBoard);
 };
 
+const updateBoardById = async (req, res, next) => {
+  const { boardId } = req.params;
+  const { title, icon, backgroundId } = req.body;
+  const normalizedTitle = title.trim();
+
+  const currentBoard = await Board.findById(boardId);
+
+  if (!currentBoard) {
+    throw HttpError(404, 'Board not found');
+  }
+
+  const updatedFields = {};
+  if (title && normalizedTitle !== currentBoard.title) {
+    updatedFields.title = normalizedTitle;
+  }
+  if (icon && icon !== currentBoard.icon) {
+    updatedFields.icon = icon;
+  }
+  if (backgroundId && backgroundId !== currentBoard.background?._id) {
+    const newBackground =
+      backgrounds.find((background) => background._id === backgroundId) || null;
+    if (newBackground !== undefined) {
+      updatedFields.background = newBackground;
+    } else {
+      throw HttpError(400, 'Invalid background ID');
+    }
+  }
+
+  if (Object.keys(updatedFields).length === 0) {
+    return res.status(400).json({ message: 'No fields to update' });
+  }
+
+  const updatedBoard = await Board.findByIdAndUpdate(boardId, updatedFields, {
+    new: true,
+  });
+
+  res.status(200).json(updatedBoard);
+};
+
+const deleteBoardById = async (req, res, next) => {
+  const { boardId } = req.params;
+
+  const deletedBoard = await Board.findByIdAndDelete(boardId);
+  if (!deletedBoard) {
+    throw HttpError(404, 'Board not found');
+  }
+
+  res.status(204).json('No content');
+};
+
+const getBackgroundsPreviews = (req, res) => {
+  const data = backgrounds.map((background) => ({
+    _id: background._id,
+    previewURL: background.previewURL,
+  }));
+
+  if (data.length === 0) {
+    throw HttpError(404, 'Backgrounds not found');
+  }
+
+  res.status(200).json(data);
+};
+
 export default {
   getAllBoards: ctrlWrapper(getAllBoards),
   createNewBoard: ctrlWrapper(createNewBoard),
-};
-
-const register = async (req, res, next) => {
-  const { name, email, password } = req.body;
-  const candidate = await User.findOne({ email });
-  if (candidate) {
-    throw HttpError(409, 'Email in use');
-  }
-
-  const hashPassword = await bcrypt.hash(password, 10);
-  const newUser = await User.create({ ...req.body, password: hashPassword });
-
-  const payload = createPayload(newUser._id);
-  const tokens = generateTokens(payload);
-  await saveToken(newUser._id, tokens.refreshToken);
-
-  res.cookie('refreshToken', tokens.refreshToken, {
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    sameSite: 'none',
-    secure: true,
-  });
-  res.status(201).json({
-    user: {
-      id: newUser._id,
-      name,
-      email,
-    },
-    ...tokens,
-  });
+  getBoardById: ctrlWrapper(getBoardById),
+  updateBoardById: ctrlWrapper(updateBoardById),
+  deleteBoardById: ctrlWrapper(deleteBoardById),
+  getBackgroundsPreviews: ctrlWrapper(getBackgroundsPreviews),
 };
