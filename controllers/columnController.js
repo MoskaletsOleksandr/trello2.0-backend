@@ -71,20 +71,20 @@ const updateColumnById = async (req, res, next) => {
   res.status(200).json(updatedColumn);
 };
 
-// const deleteBoardById = async (req, res, next) => {
-//   const { boardId } = req.params;
+const deleteColumnById = async (req, res, next) => {
+  const { columnId } = req.params;
 
-//   const deletedBoard = await Board.findByIdAndDelete(boardId);
-//   if (!deletedBoard) {
-//     throw HttpError(404, 'Board not found');
-//   }
+  const deletedColumn = await Column.findByIdAndDelete(columnId);
+  if (!deletedColumn) {
+    throw HttpError(404, 'Column not found');
+  }
 
-//   res.status(204).json('No content');
-// };
+  res.status(200).json(deletedColumn);
+};
 
 export default {
   getBoardColumns: ctrlWrapper(getBoardColumns),
   createNewColumn: ctrlWrapper(createNewColumn),
   updateColumnById: ctrlWrapper(updateColumnById),
-  //   deleteBoardById: ctrlWrapper(deleteBoardById),
+  deleteColumnById: ctrlWrapper(deleteColumnById),
 };

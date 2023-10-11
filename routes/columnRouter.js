@@ -10,6 +10,10 @@ columnsRouter.post('/', authenticate, columnController.createNewColumn);
 
 columnsRouter.put('/', authenticate, columnController.updateColumnById);
 
-// boardsRouter.delete('/:boardId', authenticate, boardController.deleteBoardById);
+columnsRouter.delete(
+  '/:columnId',
+  authenticate,
+  columnController.deleteColumnById
+);
 
 export default columnsRouter;
