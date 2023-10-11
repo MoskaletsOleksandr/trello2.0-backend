@@ -72,7 +72,7 @@ const updateBoardById = async (req, res, next) => {
   }
 
   if (Object.keys(updatedFields).length === 0) {
-    return res.status(400).json({ message: 'No fields to update' });
+    throw HttpError(400, 'No fields to update');
   }
 
   const updatedBoard = await Board.findByIdAndUpdate(boardId, updatedFields, {

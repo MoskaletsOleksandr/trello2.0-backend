@@ -9,6 +9,7 @@ const getBoardColumns = async (req, res, next) => {
   //   const userColumns = await Column.find({ ownerId: id });
   //   const boardColumns = userColumns.map((column) => column.boardId === boardId);
   const boardColumns = await Column.find({ ownerId: id, boardId });
+  boardColumns.sort((a, b) => a.order - b.order);
 
   res.status(200).json(boardColumns);
 };
@@ -46,44 +47,29 @@ const createNewColumn = async (req, res, next) => {
   res.status(201).json(newColumn);
 };
 
-// const updateBoardById = async (req, res, next) => {
-//   const { boardId } = req.params;
-//   const { title, icon, backgroundId } = req.body;
-//   const normalizedTitle = title.trim();
+const updateColumnById = async (req, res, next) => {
+  const { title, columnId } = req.body;
+  const normalizedTitle = title.trim();
 
-//   const currentBoard = await Board.findById(boardId);
+  const columnToUpdate = await Column.findById(columnId);
 
-//   if (!currentBoard) {
-//     throw HttpError(404, 'Board not found');
-//   }
+  if (!columnToUpdate) {
+    throw HttpError(404, 'Column not found');
+  }
 
-//   const updatedFields = {};
-//   if (title && normalizedTitle !== currentBoard.title) {
-//     updatedFields.title = normalizedTitle;
-//   }
-//   if (icon && icon !== currentBoard.icon) {
-//     updatedFields.icon = icon;
-//   }
-//   if (backgroundId && backgroundId !== currentBoard.background?._id) {
-//     const newBackground =
-//       backgrounds.find((background) => background._id === backgroundId) || null;
-//     if (newBackground !== undefined) {
-//       updatedFields.background = newBackground;
-//     } else {
-//       throw HttpError(400, 'Invalid background ID');
-//     }
-//   }
+  if (!title || normalizedTitle === columnToUpdate.title) {
+    throw HttpError(400, 'No data to update');
+  }
 
-//   if (Object.keys(updatedFields).length === 0) {
-//     return res.status(400).json({ message: 'No fields to update' });
-//   }
+  const newTitle = normalizedTitle;
+  const updatedColumn = await Column.findByIdAndUpdate(
+    columnId,
+    { title: newTitle },
+    { new: true }
+  );
 
-//   const updatedBoard = await Board.findByIdAndUpdate(boardId, updatedFields, {
-//     new: true,
-//   });
-
-//   res.status(200).json(updatedBoard);
-// };
+  res.status(200).json(updatedColumn);
+};
 
 // const deleteBoardById = async (req, res, next) => {
 //   const { boardId } = req.params;
@@ -99,6 +85,6 @@ const createNewColumn = async (req, res, next) => {
 export default {
   getBoardColumns: ctrlWrapper(getBoardColumns),
   createNewColumn: ctrlWrapper(createNewColumn),
-  //   updateBoardById: ctrlWrapper(updateBoardById),
+  updateColumnById: ctrlWrapper(updateColumnById),
   //   deleteBoardById: ctrlWrapper(deleteBoardById),
 };
