@@ -2,6 +2,7 @@ import backgrounds from '../data/backgrounds/backgrounds.js';
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
 import HttpError from '../helpers/HttpError.js';
 import Board from '../models/board.js';
+import Column from '../models/column.js';
 
 const getAllBoards = async (req, res, next) => {
   const { id } = req.user;
@@ -89,6 +90,8 @@ const deleteBoardById = async (req, res, next) => {
   if (!deletedBoard) {
     throw HttpError(404, 'Board not found');
   }
+
+  await Column.deleteMany({ boardId });
 
   res.status(204).json('No content');
 };
