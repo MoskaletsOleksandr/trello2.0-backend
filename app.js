@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import boardsRouter from './routes/boardRouter.js';
 import columnsRouter from './routes/columnRouter.js';
+import cardRouter from './routes/cardRouter.js';
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.json());
 app.use('/users', userRouter);
 app.use('/boards', boardsRouter);
 app.use('/columns', columnsRouter);
+app.use('/cards', cardRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });

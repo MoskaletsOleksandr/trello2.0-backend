@@ -7,8 +7,11 @@ export const createPayload = (id) => ({ id });
 
 export const generateTokens = (payload) => {
   const accessToken = jwt.sign(payload, ACCESS_SECRET_KEY, {
-    expiresIn: '5m',
+    expiresIn: '1d',
   });
+  // const accessToken = jwt.sign(payload, ACCESS_SECRET_KEY, {
+  //   expiresIn: '5m',
+  // });
   const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
     expiresIn: '7d',
   });
