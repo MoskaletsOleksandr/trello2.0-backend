@@ -8,13 +8,17 @@ columnsRouter.get('/:boardId', authenticate, columnController.getBoardColumns);
 
 columnsRouter.post('/', authenticate, columnController.createNewColumn);
 
-columnsRouter.put(
-  '/:columnId',
+columnsRouter.patch(
+  '/update/:columnId',
   authenticate,
   columnController.updateColumnById
 );
 
-columnsRouter.put('/:columnId', authenticate, columnController.moveColumnById);
+columnsRouter.patch(
+  '/move/:columnId',
+  authenticate,
+  columnController.moveColumnById
+);
 
 columnsRouter.delete(
   '/:columnId',
