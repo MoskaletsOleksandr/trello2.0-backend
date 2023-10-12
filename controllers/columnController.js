@@ -48,7 +48,34 @@ const createNewColumn = async (req, res, next) => {
 };
 
 const updateColumnById = async (req, res, next) => {
-  const { title, columnId } = req.body;
+  const { columnId } = req.params;
+  const { title } = req.body;
+  const normalizedTitle = title.trim();
+
+  const columnToUpdate = await Column.findById(columnId);
+
+  if (!columnToUpdate) {
+    throw HttpError(404, 'Column not found');
+  }
+
+  if (!title || normalizedTitle === columnToUpdate.title) {
+    throw HttpError(400, 'No data to update');
+  }
+
+  const newTitle = normalizedTitle;
+  const updatedColumn = await Column.findByIdAndUpdate(
+    columnId,
+    { title: newTitle },
+    { new: true }
+  );
+
+  res.status(200).json(updatedColumn);
+};
+
+const moveColumnById = async (req, res, next) => {
+  const { columnId } = req.params;
+
+  const { title } = req.body;
   const normalizedTitle = title.trim();
 
   const columnToUpdate = await Column.findById(columnId);
@@ -86,5 +113,6 @@ export default {
   getBoardColumns: ctrlWrapper(getBoardColumns),
   createNewColumn: ctrlWrapper(createNewColumn),
   updateColumnById: ctrlWrapper(updateColumnById),
+  moveColumnById: ctrlWrapper(moveColumnById),
   deleteColumnById: ctrlWrapper(deleteColumnById),
 };
