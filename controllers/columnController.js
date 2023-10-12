@@ -1,20 +1,13 @@
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
+import { getBoardColumnsByOwnerAndBoard } from '../helpers/columnService.js';
 import HttpError from '../helpers/HttpError.js';
 import Column from '../models/column.js';
-
-// винести в окрему функцію наступний код
-//   const boardId = columnToUpdate.boardId;
-//   const boardColumns = await Column.find({ ownerId: id, boardId });
-// boardColumns.sort((a, b) => a.order - b.order);
 
 const getBoardColumns = async (req, res, next) => {
   const { id } = req.user;
   const { boardId } = req.params;
 
-  //   const userColumns = await Column.find({ ownerId: id });
-  //   const boardColumns = userColumns.map((column) => column.boardId === boardId);
-  const boardColumns = await Column.find({ ownerId: id, boardId });
-  boardColumns.sort((a, b) => a.order - b.order);
+  const boardColumns = await getBoardColumnsByOwnerAndBoard(id, boardId);
 
   res.status(200).json(boardColumns);
 };
@@ -24,8 +17,6 @@ const createNewColumn = async (req, res, next) => {
   const { title, boardId } = req.body;
   const normalizedTitle = title.trim();
 
-  //   const userColumns = await Column.find({ ownerId: id });
-  //   const boardColumns = userColumns.map((column) => column.boardId === boardId);
   const boardColumns = await Column.find({ ownerId: id, boardId });
 
   const column = boardColumns.find(
@@ -77,12 +68,10 @@ const updateColumnById = async (req, res, next) => {
   res.status(200).json(updatedColumn);
 };
 
-// написати перевірку, які рахує кількість колонок на дошці і видає помилку, якщо новий порядковий номер
-// більше, ніж кількість колонок
 const moveColumnById = async (req, res, next) => {
   const { id } = req.user;
   const { columnId } = req.params;
-  const { newOrder } = req.body;
+  const { oldOrder, newOrder } = req.body;
 
   const columnToUpdate = await Column.findById(columnId);
 
@@ -94,11 +83,42 @@ const moveColumnById = async (req, res, next) => {
     throw HttpError(400, 'No data to update');
   }
 
+  const boardId = columnToUpdate.boardId;
+  const boardColumnsCount = await Column.countDocuments({
+    ownerId: id,
+    boardId,
+  });
+
+  if (newOrder > boardColumnsCount) {
+    throw HttpError(
+      400,
+      'New order is greater than the number of columns on the board'
+    );
+  }
+
+  const range =
+    oldOrder < newOrder
+      ? { $gt: oldOrder, $lte: newOrder }
+      : { $gte: newOrder, $lt: oldOrder };
+
+  const columnsInRange = await Column.find({
+    order: range,
+  });
+
   await columnToUpdate.updateOne({ order: newOrder });
 
-  const boardId = columnToUpdate.boardId;
-  const boardColumns = await Column.find({ ownerId: id, boardId });
-  boardColumns.sort((a, b) => a.order - b.order);
+  const updates = columnsInRange.map(async (column) => {
+    if (oldOrder < newOrder) {
+      column.order -= 1;
+    } else {
+      column.order += 1;
+    }
+    await column.save();
+  });
+
+  await Promise.all(updates);
+
+  const boardColumns = await getBoardColumnsByOwnerAndBoard(id, boardId);
 
   res.status(200).json(boardColumns);
 };
@@ -112,16 +132,10 @@ const deleteColumnById = async (req, res, next) => {
     throw HttpError(404, 'Column not found');
   }
 
-  // Отримуємо всі наступні колонки, які мають більший порядковий номер
   const columnsToShift = await Column.find({
     order: { $gte: deletedColumn.order },
   });
 
-  // Оновлюємо порядкові номери цих колонок
-  // columnsToShift.forEach(async (column) => {
-  //   column.order = column.order - 1;
-  //   await column.save();
-  // });
   await Promise.all(
     columnsToShift.map(async (column) => {
       column.order = column.order - 1;
@@ -130,8 +144,7 @@ const deleteColumnById = async (req, res, next) => {
   );
 
   const boardId = deletedColumn.boardId;
-  const boardColumns = await Column.find({ ownerId: id, boardId });
-  boardColumns.sort((a, b) => a.order - b.order);
+  const boardColumns = await getBoardColumnsByOwnerAndBoard(id, boardId);
 
   res.status(200).json(boardColumns);
 };
