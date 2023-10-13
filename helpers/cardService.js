@@ -5,3 +5,5 @@ export const getBoardCardsByOwnerAndBoard = async (ownerId, boardId) => {
   boardColumns.sort((a, b) => a.order - b.order);
   return boardColumns;
 };
+
+export const deadlinePattern = /\d{4}-\d{2}-\d{2}/;

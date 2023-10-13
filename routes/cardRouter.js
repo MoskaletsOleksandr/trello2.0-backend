@@ -8,13 +8,7 @@ cardRouter.get('/:boardId', authenticate, cardController.getBoardCards);
 
 cardRouter.post('/', authenticate, cardController.createNewCard);
 
-// taskRouter.put(
-//   '/:taskId',
-//   userValidators.authenticate,
-//   userValidators.isEmptyBody,
-//   taskValidators.taskValidator,
-//   taskControllers.updateTask
-// );
+cardRouter.put('/update/:cardId', authenticate, cardController.updateCardById);
 
 // taskRouter.delete(
 //   '/:taskId',

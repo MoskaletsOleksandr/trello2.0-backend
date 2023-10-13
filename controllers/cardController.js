@@ -1,6 +1,10 @@
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
-import { getBoardCardsByOwnerAndBoard } from '../helpers/cardService.js';
+import {
+  deadlinePattern,
+  getBoardCardsByOwnerAndBoard,
+} from '../helpers/cardService.js';
 import { getBoardColumnsByOwnerAndBoard } from '../helpers/columnService.js';
+import HttpError from '../helpers/HttpError.js';
 import Card from '../models/card.js';
 
 const getBoardCards = async (req, res) => {
@@ -28,7 +32,11 @@ const getBoardCards = async (req, res) => {
 
 const createNewCard = async (req, res) => {
   const { id } = req.user;
-  const { boardId, columnId } = req.body;
+  const { boardId, columnId, deadline } = req.body;
+
+  if (!deadline.match(deadlinePattern)) {
+    throw HttpError(400, 'Invalid date');
+  }
 
   const columnCards = await Card.find({ ownerId: id, boardId, columnId });
   const maxOrder = columnCards.reduce((max, card) => {
@@ -44,27 +52,45 @@ const createNewCard = async (req, res) => {
   res.status(201).json(newCard);
 };
 
-// // ok
-// const updateTask = async (req, res) => {
-//   try {
-//     const { taskId } = req.params;
-//     const { title, text, priority, deadline, boardId, columnId } = req.body;
+const updateCardById = async (req, res) => {
+  const { cardId } = req.params;
+  const { title, text, priority, deadline, boardId, columnId } = req.body;
+  const normalizedTitle = title.trim();
 
-//     const task = await Task.findById(taskId);
-//     if (!task) {
-//       return res.status(404).json({ message: 'Task not found' });
-//     }
-//     const updateTask = await Task.findByIdAndUpdate(
-//       taskId,
-//       { ...req.body },
-//       { new: true }
-//     );
-//     res.status(200).json(updateTask);
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(404).json({ message: error.message });
-//   }
-// };
+  const cardToUpdate = await Card.findById(cardId);
+
+  if (!cardToUpdate) {
+    throw HttpError(404, 'Card not found');
+  }
+
+  const updatedFields = {};
+  if (title || normalizedTitle !== cardToUpdate.title) {
+    updatedFields.title = normalizedTitle;
+  }
+  if (text && text !== cardToUpdate.text) {
+    updatedFields.text = text;
+  }
+  if (priority && priority !== cardToUpdate.priority) {
+    updatedFields.priority = priority;
+  }
+  if (
+    deadline &&
+    deadline !== cardToUpdate.deadline &&
+    deadline.match(deadlinePattern)
+  ) {
+    updatedFields.deadline = deadline;
+  }
+
+  if (Object.keys(updatedFields).length === 0) {
+    throw HttpError(400, 'No fields to update');
+  }
+
+  const updatedCard = await Card.findByIdAndUpdate(cardId, updatedFields, {
+    new: true,
+  });
+
+  res.status(200).json(updatedCard);
+};
 
 // // ok
 // const deleteTask = async (req, res) => {
@@ -124,4 +150,5 @@ const createNewCard = async (req, res) => {
 export default {
   getBoardCards: ctrlWrapper(getBoardCards),
   createNewCard: ctrlWrapper(createNewCard),
+  updateCardById: ctrlWrapper(updateCardById),
 };
