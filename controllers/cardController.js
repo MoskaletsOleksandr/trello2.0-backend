@@ -92,6 +92,33 @@ const updateCardById = async (req, res) => {
   res.status(200).json(updatedCard);
 };
 
+const deleteCardById = async (req, res, next) => {
+  const { id } = req.user;
+  const { cardId } = req.params;
+
+  const deletedCard = await Card.findByIdAndDelete(cardId);
+  if (!deletedCard) {
+    throw HttpError(404, 'Card not found');
+  }
+
+  // const columnsToShift = await Column.find({
+  //   order: { $gte: deletedColumn.order },
+  // });
+
+  // await Promise.all(
+  //   columnsToShift.map(async (column) => {
+  //     column.order = column.order - 1;
+  //     await column.save();
+  //   })
+  // );
+
+  // const boardId = deletedColumn.boardId;
+  // await Card.deleteMany({ columnId });
+  // const boardColumns = await getBoardColumnsByOwnerAndBoard(id, boardId);
+
+  // res.status(200).json(boardColumns);
+};
+
 // // ok
 // const deleteTask = async (req, res) => {
 //   try {
@@ -151,4 +178,5 @@ export default {
   getBoardCards: ctrlWrapper(getBoardCards),
   createNewCard: ctrlWrapper(createNewCard),
   updateCardById: ctrlWrapper(updateCardById),
+  deleteCardById: ctrlWrapper(deleteCardById),
 };

@@ -10,6 +10,8 @@ cardRouter.post('/', authenticate, cardController.createNewCard);
 
 cardRouter.put('/update/:cardId', authenticate, cardController.updateCardById);
 
+cardRouter.delete('/:cardId', authenticate, cardController.deleteCardById);
+
 // taskRouter.delete(
 //   '/:taskId',
 //   userValidators.authenticate,

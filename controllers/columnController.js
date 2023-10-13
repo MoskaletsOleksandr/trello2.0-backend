@@ -103,6 +103,7 @@ const moveColumnById = async (req, res, next) => {
       : { $gte: newOrder, $lt: oldOrder };
 
   const columnsInRange = await Column.find({
+    boardId,
     order: range,
   });
 
@@ -132,9 +133,11 @@ const deleteColumnById = async (req, res, next) => {
   if (!deletedColumn) {
     throw HttpError(404, 'Column not found');
   }
+  const boardId = deletedColumn.boardId;
 
   const columnsToShift = await Column.find({
-    order: { $gte: deletedColumn.order },
+    boardId,
+    order: { $gt: deletedColumn.order },
   });
 
   await Promise.all(
@@ -144,7 +147,6 @@ const deleteColumnById = async (req, res, next) => {
     })
   );
 
-  const boardId = deletedColumn.boardId;
   await Card.deleteMany({ columnId });
   const boardColumns = await getBoardColumnsByOwnerAndBoard(id, boardId);
 
