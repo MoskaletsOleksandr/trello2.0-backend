@@ -4,7 +4,6 @@ const boardSchema = new Schema(
   {
     title: {
       type: String,
-      unique: true,
     },
     icon: {
       type: String,

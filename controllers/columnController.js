@@ -1,6 +1,7 @@
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
 import { getBoardColumnsByOwnerAndBoard } from '../helpers/columnService.js';
 import HttpError from '../helpers/HttpError.js';
+import Card from '../models/card.js';
 import Column from '../models/column.js';
 
 const getBoardColumns = async (req, res, next) => {
@@ -144,6 +145,7 @@ const deleteColumnById = async (req, res, next) => {
   );
 
   const boardId = deletedColumn.boardId;
+  await Card.deleteMany({ columnId });
   const boardColumns = await getBoardColumnsByOwnerAndBoard(id, boardId);
 
   res.status(200).json(boardColumns);

@@ -4,7 +4,6 @@ const columnSchema = new Schema(
   {
     title: {
       type: String,
-      unique: true,
     },
     boardId: {
       type: String,

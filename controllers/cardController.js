@@ -15,6 +15,7 @@ const getBoardCards = async (req, res) => {
         boardId,
         columnId: column._id,
       });
+      cards.sort((a, b) => a.order - b.order);
       return {
         columnId: column._id,
         cards: cards,

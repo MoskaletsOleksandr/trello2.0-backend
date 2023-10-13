@@ -2,6 +2,7 @@ import backgrounds from '../data/backgrounds/backgrounds.js';
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
 import HttpError from '../helpers/HttpError.js';
 import Board from '../models/board.js';
+import Card from '../models/card.js';
 import Column from '../models/column.js';
 
 const getAllBoards = async (req, res, next) => {
@@ -92,6 +93,7 @@ const deleteBoardById = async (req, res, next) => {
   }
 
   await Column.deleteMany({ boardId });
+  await Card.deleteMany({ boardId });
 
   res.status(204).json('No content');
 };
