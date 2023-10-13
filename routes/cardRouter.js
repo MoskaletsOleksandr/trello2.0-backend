@@ -10,26 +10,8 @@ cardRouter.post('/', authenticate, cardController.createNewCard);
 
 cardRouter.put('/update/:cardId', authenticate, cardController.updateCardById);
 
+cardRouter.patch('/move/:cardId', authenticate, cardController.moveCardById);
+
 cardRouter.delete('/:cardId', authenticate, cardController.deleteCardById);
-
-// taskRouter.delete(
-//   '/:taskId',
-//   userValidators.authenticate,
-//   taskControllers.deleteTask
-// );
-
-// taskRouter.patch(
-//   '/:taskId/move',
-//   userValidators.authenticate,
-//   userValidators.isEmptyBody,
-//   taskValidators.moveTask,
-//   taskControllers.moveTask
-// );
-
-// taskRouter.get(
-//   '/:boardId/:priority',
-//   userValidators.authenticate,
-//   taskControllers.getTasksByPriority
-// );
 
 export default cardRouter;

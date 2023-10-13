@@ -1,11 +1,13 @@
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
 import {
   deadlinePattern,
-  getBoardCardsByOwnerAndBoard,
+  getColomnCardsByOwnerAndColumn,
+  getColomnCardsByOwnerAndColumnQuantity,
 } from '../helpers/cardService.js';
 import { getBoardColumnsByOwnerAndBoard } from '../helpers/columnService.js';
 import HttpError from '../helpers/HttpError.js';
 import Card from '../models/card.js';
+import Column from '../models/column.js';
 
 const getBoardCards = async (req, res) => {
   const { id } = req.user;
@@ -92,6 +94,56 @@ const updateCardById = async (req, res) => {
   res.status(200).json(updatedCard);
 };
 
+const moveCardById = async (req, res, next) => {
+  const { id } = req.user;
+  const { cardId } = req.params;
+  const { newColumnId } = req.body;
+
+  const cardToUpdate = await Card.findById(cardId);
+  if (!cardToUpdate) {
+    throw HttpError(404, 'Card not found');
+  }
+
+  const oldColumnId = cardToUpdate.columnId;
+  if (!newColumnId || newColumnId === oldColumnId) {
+    throw HttpError(400, 'No data to update');
+  }
+
+  const newColumn = await Column.findById(newColumnId);
+  if (!newColumn) {
+    throw HttpError(404, 'The target column does not exist');
+  }
+
+  const oldColumnCardsToShift = await Card.find({
+    columnId: oldColumnId,
+    order: { $gt: cardToUpdate.order },
+  });
+
+  const newColumnCardsQuantity = await getColomnCardsByOwnerAndColumnQuantity(
+    id,
+    newColumnId
+  );
+  const cardToUpdateNewOrder = newColumnCardsQuantity + 1;
+  await cardToUpdate.updateOne({
+    columnId: newColumnId,
+    order: cardToUpdateNewOrder,
+  });
+
+  await Promise.all(
+    oldColumnCardsToShift.map(async (card) => {
+      card.order = card.order - 1;
+      await card.save();
+    })
+  );
+
+  const oldColumnCards = await getColomnCardsByOwnerAndColumn(id, oldColumnId);
+  const newColumnCards = await getColomnCardsByOwnerAndColumn(id, newColumnId);
+
+  const updatedColumns = [oldColumnCards, newColumnCards];
+
+  res.status(200).json(updatedColumns);
+};
+
 const deleteCardById = async (req, res, next) => {
   const { id } = req.user;
   const { cardId } = req.params;
@@ -101,82 +153,29 @@ const deleteCardById = async (req, res, next) => {
     throw HttpError(404, 'Card not found');
   }
 
-  // const columnsToShift = await Column.find({
-  //   order: { $gte: deletedColumn.order },
-  // });
+  const columnId = deletedCard.columnId;
 
-  // await Promise.all(
-  //   columnsToShift.map(async (column) => {
-  //     column.order = column.order - 1;
-  //     await column.save();
-  //   })
-  // );
+  const cardsToShift = await Card.find({
+    columnId,
+    order: { $gt: deletedCard.order },
+  });
 
-  // const boardId = deletedColumn.boardId;
-  // await Card.deleteMany({ columnId });
-  // const boardColumns = await getBoardColumnsByOwnerAndBoard(id, boardId);
+  await Promise.all(
+    cardsToShift.map(async (card) => {
+      card.order = card.order - 1;
+      await card.save();
+    })
+  );
 
-  // res.status(200).json(boardColumns);
+  const columnCards = await getColomnCardsByOwnerAndColumn(id, columnId);
+
+  res.status(200).json(columnCards);
 };
-
-// // ok
-// const deleteTask = async (req, res) => {
-//   try {
-//     const { taskId } = req.params;
-
-//     const task = await Task.findById(taskId);
-
-//     if (!task) {
-//       return res.status(404).json({ message: 'Task not found' });
-//     }
-//     await Task.findByIdAndDelete(taskId);
-
-//     res.status(200).json(task);
-//   } catch (error) {
-//     return res.status(404).json({ message: error.message });
-//   }
-// };
-
-// // ok
-// const moveTask = async (req, res) => {
-//   try {
-//     const { taskId } = req.params;
-//     const { newColumnId } = req.body;
-
-//     const task = await Task.findById(taskId);
-
-//     if (!task) {
-//       return res.status(404).json({ message: 'Task not found' });
-//     }
-//     const updateTask = await Task.findByIdAndUpdate(
-//       taskId,
-//       { columnId: newColumnId },
-//       { new: true }
-//     );
-
-//     res.status(200).json(updateTask);
-//   } catch (error) {
-//     return res.status(404).json({ message: error.message });
-//   }
-// };
-
-// // ok
-// const getTasksByPriority = async (req, res) => {
-//   try {
-//     const { boardId, priority } = req.params;
-
-//     const filteredTasks = await Task.find({ boardId, priority });
-
-//     res.status(200).json(filteredTasks);
-//   } catch (error) {
-//     console.error(error);
-//     return res.status(404).json({ message: error.message });
-//   }
-// };
 
 export default {
   getBoardCards: ctrlWrapper(getBoardCards),
   createNewCard: ctrlWrapper(createNewCard),
   updateCardById: ctrlWrapper(updateCardById),
+  moveCardById: ctrlWrapper(moveCardById),
   deleteCardById: ctrlWrapper(deleteCardById),
 };

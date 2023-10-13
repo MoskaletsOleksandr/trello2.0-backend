@@ -72,15 +72,15 @@ const updateColumnById = async (req, res, next) => {
 const moveColumnById = async (req, res, next) => {
   const { id } = req.user;
   const { columnId } = req.params;
-  const { oldOrder, newOrder } = req.body;
+  const { newOrder } = req.body;
 
   const columnToUpdate = await Column.findById(columnId);
-
   if (!columnToUpdate) {
     throw HttpError(404, 'Column not found');
   }
 
-  if (!newOrder || newOrder === columnToUpdate.order) {
+  const oldOrder = columnToUpdate.order;
+  if (!newOrder || newOrder === oldOrder) {
     throw HttpError(400, 'No data to update');
   }
 
