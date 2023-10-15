@@ -1,14 +1,15 @@
 import mongoose from 'mongoose';
 import 'dotenv/config';
 
-import app from './app.js';
+import httpServer from './app.js';
+// import app from './app.js';
 
 const { DB_HOST, PORT } = process.env;
 
 mongoose
   .connect(DB_HOST)
   .then(
-    app.listen(PORT, () => {
+    httpServer.listen(PORT, () => {
       console.log('SERVER STARTED ON PORT ' + PORT);
     })
   )

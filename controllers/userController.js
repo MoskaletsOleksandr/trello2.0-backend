@@ -157,6 +157,34 @@ const updateCurrentBoardId = async (req, res, next) => {
   });
 };
 
+export const lwsLogin = async (data) => {
+  const errorMessage = 'Email or password is wrong';
+  const { email, password } = data;
+  const user = await User.findOne({ email });
+  if (!user) {
+    return { type: 'loginError', payload: errorMessage };
+  }
+
+  const passwordCompare = await bcrypt.compare(password, user.password);
+  if (!passwordCompare) {
+    return { type: 'loginError', payload: errorMessage };
+  }
+
+  const payload = createPayload(user._id);
+  const tokens = generateTokens(payload);
+  const deviceId = generateDeviceId();
+  await saveToken(user._id, tokens.refreshToken, deviceId);
+
+  return {
+    type: 'loginSuccess',
+    payload: {
+      user,
+      deviceId,
+      ...tokens,
+    },
+  };
+};
+
 export default {
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
