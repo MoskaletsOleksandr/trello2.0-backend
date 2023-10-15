@@ -1,6 +1,7 @@
 import express from 'express';
 import userController from '../controllers/userController.js';
 import authenticate from '../middlewares/authenticate.js';
+import extractDeviceId from '../middlewares/extractDeviceId.js';
 
 const userRouter = express.Router();
 
@@ -8,9 +9,9 @@ userRouter.post('/register', userController.register);
 
 userRouter.post('/login', userController.login);
 
-userRouter.post('/logout', userController.logout);
+userRouter.post('/logout', extractDeviceId, userController.logout);
 
-userRouter.get('/refresh', userController.refresh);
+userRouter.get('/refresh', extractDeviceId, userController.refresh);
 
 userRouter.patch('/theme', authenticate, userController.updateTheme);
 

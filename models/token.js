@@ -10,6 +10,10 @@ const tokenSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
+    deviceId: {
+      type: String,
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );

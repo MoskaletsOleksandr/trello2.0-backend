@@ -1,8 +1,9 @@
 import {
   createPayload,
-  findToken,
+  findTokenByRefreshTokenAndDeviceId,
+  generateDeviceId,
   generateTokens,
-  removeToken,
+  removeTokenByRefreshTokenAndDeviceId,
   saveToken,
   validateRefreshToken,
 } from '../helpers/tokenService.js';
@@ -23,7 +24,8 @@ const register = async (req, res, next) => {
 
   const payload = createPayload(newUser._id);
   const tokens = generateTokens(payload);
-  await saveToken(newUser._id, tokens.refreshToken);
+  const deviceId = generateDeviceId();
+  await saveToken(newUser._id, tokens.refreshToken, deviceId);
 
   res.cookie('refreshToken', tokens.refreshToken, {
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -37,6 +39,7 @@ const register = async (req, res, next) => {
       name,
       email,
     },
+    deviceId,
     ...tokens,
   });
 };
@@ -56,7 +59,8 @@ const login = async (req, res, next) => {
 
   const payload = createPayload(user._id);
   const tokens = generateTokens(payload);
-  await saveToken(user._id, tokens.refreshToken);
+  const deviceId = generateDeviceId();
+  await saveToken(user._id, tokens.refreshToken, deviceId);
 
   res.cookie('refreshToken', tokens.refreshToken, {
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -66,13 +70,15 @@ const login = async (req, res, next) => {
   });
   res.status(200).json({
     user,
+    deviceId,
     ...tokens,
   });
 };
 
 const logout = async (req, res, next) => {
   const { refreshToken } = req.cookies;
-  await removeToken(refreshToken);
+  const { deviceId } = req;
+  await removeTokenByRefreshTokenAndDeviceId(refreshToken, deviceId);
 
   res.clearCookie('refreshToken');
   res.status(204).json({ message: 'No content' });
@@ -81,12 +87,16 @@ const logout = async (req, res, next) => {
 const refresh = async (req, res, next) => {
   const errorMessage = 'Token invalid';
   const { refreshToken } = req.cookies;
-  if (!refreshToken) {
+  const { deviceId } = req;
+  if (!refreshToken || !deviceId) {
     throw HttpError(403, errorMessage);
   }
 
   const userData = validateRefreshToken(refreshToken);
-  const tokenInDb = await findToken(refreshToken);
+  const tokenInDb = await findTokenByRefreshTokenAndDeviceId(
+    refreshToken,
+    deviceId
+  );
   if (!userData || !tokenInDb) {
     throw HttpError(403, errorMessage);
   }
@@ -95,7 +105,7 @@ const refresh = async (req, res, next) => {
 
   const payload = createPayload(user._id);
   const tokens = generateTokens(payload);
-  await saveToken(user._id, tokens.refreshToken);
+  await saveToken(user._id, tokens.refreshToken, deviceId);
 
   res.cookie('refreshToken', tokens.refreshToken, {
     maxAge: 30 * 24 * 60 * 60 * 1000,

@@ -7,11 +7,8 @@ export const createPayload = (id) => ({ id });
 
 export const generateTokens = (payload) => {
   const accessToken = jwt.sign(payload, ACCESS_SECRET_KEY, {
-    expiresIn: '1d',
+    expiresIn: '3m',
   });
-  // const accessToken = jwt.sign(payload, ACCESS_SECRET_KEY, {
-  //   expiresIn: '5m',
-  // });
   const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
     expiresIn: '7d',
   });
@@ -22,24 +19,30 @@ export const generateTokens = (payload) => {
   };
 };
 
-export const saveToken = async (userId, refreshToken) => {
-  const tokenData = await Token.findOne({ user: userId });
+export const saveToken = async (userId, refreshToken, deviceId) => {
+  const tokenData = await Token.findOne({ user: userId, deviceId });
   if (tokenData) {
     tokenData.refreshToken = refreshToken;
     return tokenData.save();
   }
 
-  const token = await Token.create({ user: userId, refreshToken });
+  const token = await Token.create({ user: userId, refreshToken, deviceId });
   return token;
 };
 
-export const removeToken = async (refreshToken) => {
-  const tokenData = await Token.deleteOne({ refreshToken });
+export const removeTokenByRefreshTokenAndDeviceId = async (
+  refreshToken,
+  deviceId
+) => {
+  const tokenData = await Token.deleteOne({ refreshToken, deviceId });
   return tokenData;
 };
 
-export const findToken = async (refreshToken) => {
-  const tokenData = await Token.findOne({ refreshToken });
+export const findTokenByRefreshTokenAndDeviceId = async (
+  refreshToken,
+  deviceId
+) => {
+  const tokenData = await Token.findOne({ refreshToken, deviceId });
   return tokenData;
 };
 
@@ -59,4 +62,16 @@ export const validateRefreshToken = (token) => {
   } catch (error) {
     return null;
   }
+};
+
+export const generateDeviceId = () => {
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const length = 48;
+  let deviceId = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    deviceId += characters.charAt(randomIndex);
+  }
+  return deviceId;
 };
