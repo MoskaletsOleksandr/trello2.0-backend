@@ -66,7 +66,7 @@ const updateCardById = async (req, res) => {
   }
 
   const updatedFields = {};
-  if (title || normalizedTitle !== cardToUpdate.title) {
+  if (title && normalizedTitle !== cardToUpdate.title) {
     updatedFields.title = normalizedTitle;
   }
   if (text && text !== cardToUpdate.text) {
@@ -82,7 +82,6 @@ const updateCardById = async (req, res) => {
   ) {
     updatedFields.deadline = deadline;
   }
-
   if (Object.keys(updatedFields).length === 0) {
     throw HttpError(400, 'No fields to update');
   }
