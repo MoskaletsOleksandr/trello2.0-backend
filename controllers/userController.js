@@ -158,9 +158,7 @@ const updateCurrentBoardId = async (req, res, next) => {
 };
 
 const wakeUpBackend = (req, res, next) => {
-  setTimeout(() => {
-    res.status(204).json({ message: 'No content' });
-  }, 5000);
+  res.status(204).json({ message: 'No content' });
 };
 
 export default {
