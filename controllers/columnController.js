@@ -52,7 +52,7 @@ const updateColumnById = async (req, res, next) => {
   const columnToUpdate = await Column.findById(columnId);
 
   if (!columnToUpdate) {
-    throw HttpError(404, 'Column not found');
+    throw HttpError(404, 'An error occurred. Column not found');
   }
 
   if (!title || normalizedTitle === columnToUpdate.title) {
@@ -76,7 +76,7 @@ const moveColumnById = async (req, res, next) => {
 
   const columnToUpdate = await Column.findById(columnId);
   if (!columnToUpdate) {
-    throw HttpError(404, 'Column not found');
+    throw HttpError(404, 'An error occurred. Column not found');
   }
 
   const oldOrder = columnToUpdate.order;
@@ -131,7 +131,7 @@ const deleteColumnById = async (req, res, next) => {
 
   const deletedColumn = await Column.findByIdAndDelete(columnId);
   if (!deletedColumn) {
-    throw HttpError(404, 'Column not found');
+    throw HttpError(404, 'An error occurred. Column not found');
   }
   const boardId = deletedColumn.boardId;
 

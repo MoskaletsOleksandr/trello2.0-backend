@@ -68,6 +68,7 @@ const login = async (req, res, next) => {
     sameSite: 'none',
     secure: true,
   });
+
   res.status(200).json({
     user,
     deviceId,
@@ -85,7 +86,7 @@ const logout = async (req, res, next) => {
 };
 
 const refresh = async (req, res, next) => {
-  const errorMessage = 'Token invalid';
+  const errorMessage = 'You tried to authenticate with an invalid token';
   const { refreshToken } = req.cookies;
   const { deviceId } = req;
   if (!refreshToken || !deviceId) {
@@ -129,7 +130,10 @@ const updateTheme = async (req, res, next) => {
   );
 
   if (!user) {
-    throw HttpError(401, `User with id ${id} not found`);
+    throw HttpError(
+      401,
+      `An error occurred while updating the theme. User with id ${id} not found`
+    );
   }
 
   res.status(200).json({
@@ -148,7 +152,10 @@ const updateCurrentBoardId = async (req, res, next) => {
   );
 
   if (!user) {
-    throw HttpError(401, `User with id ${id} not found`);
+    throw HttpError(
+      401,
+      `Error while changing board. User with id ${id} not found`
+    );
   }
 
   res.status(200).json({

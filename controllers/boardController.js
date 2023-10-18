@@ -16,7 +16,7 @@ const getBoardById = async (req, res, next) => {
   const board = await Board.findById(boardId);
 
   if (!board) {
-    throw HttpError(404, 'Board not found');
+    throw HttpError(404, 'An error occurred. Board not found');
   }
 
   res.status(200).json(board);
@@ -27,7 +27,7 @@ const createNewBoard = async (req, res, next) => {
   const { title, backgroundId } = req.body;
   const normalizedTitle = title.trim();
 
-  const board = await Board.findOne({ normalizedTitle });
+  const board = await Board.findOne({ title: normalizedTitle, ownerId: id });
   if (board) {
     throw HttpError(409, 'A board with the same title already exists');
   }
@@ -53,7 +53,7 @@ const updateBoardById = async (req, res, next) => {
   const currentBoard = await Board.findById(boardId);
 
   if (!currentBoard) {
-    throw HttpError(404, 'Board not found');
+    throw HttpError(404, 'An error occurred. Board not found');
   }
 
   const updatedFields = {};
@@ -69,7 +69,7 @@ const updateBoardById = async (req, res, next) => {
     if (newBackground !== undefined) {
       updatedFields.background = newBackground;
     } else {
-      throw HttpError(400, 'Invalid background ID');
+      throw HttpError(400, 'An error occurred. Invalid background ID');
     }
   }
 
@@ -89,7 +89,7 @@ const deleteBoardById = async (req, res, next) => {
 
   const deletedBoard = await Board.findByIdAndDelete(boardId);
   if (!deletedBoard) {
-    throw HttpError(404, 'Board not found');
+    throw HttpError(404, 'An error occurred. Board not found');
   }
 
   await Column.deleteMany({ boardId });
@@ -105,7 +105,7 @@ const getBackgroundsPreviews = (req, res) => {
   }));
 
   if (data.length === 0) {
-    throw HttpError(404, 'Backgrounds not found');
+    throw HttpError(404, 'An error occurred. Backgrounds not found');
   }
 
   res.status(200).json(data);

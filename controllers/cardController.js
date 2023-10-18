@@ -36,7 +36,7 @@ const createNewCard = async (req, res) => {
   const { boardId, columnId, deadline } = req.body;
 
   if (!deadline.match(deadlinePattern)) {
-    throw HttpError(400, 'Invalid date');
+    throw HttpError(400, 'Invalid date format');
   }
 
   const columnCards = await Card.find({ ownerId: id, boardId, columnId });
@@ -61,7 +61,7 @@ const updateCardById = async (req, res) => {
   const cardToUpdate = await Card.findById(cardId);
 
   if (!cardToUpdate) {
-    throw HttpError(404, 'Card not found');
+    throw HttpError(404, 'An error occurred. Card not found');
   }
 
   const updatedFields = {};
@@ -100,7 +100,7 @@ const moveCardById = async (req, res) => {
 
   const cardToUpdate = await Card.findById(cardId);
   if (!cardToUpdate) {
-    throw HttpError(404, 'Card not found');
+    throw HttpError(404, 'An error occurred. Card not found');
   }
 
   const oldColumnId = cardToUpdate.columnId;
@@ -281,7 +281,7 @@ const deleteCardById = async (req, res) => {
 
   const deletedCard = await Card.findByIdAndDelete(cardId);
   if (!deletedCard) {
-    throw HttpError(404, 'Card not found');
+    throw HttpError(404, 'An error occurred. Card not found');
   }
 
   const columnId = deletedCard.columnId;
