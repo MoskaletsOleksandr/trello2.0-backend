@@ -124,7 +124,7 @@ const moveCardById = async (req, res, next) => {
     newColumnId
   );
 
-  if (newColumnId === oldColumnId && newOrderInColumn === 'null') {
+  if (newColumnId === oldColumnId && newOrderInColumn === 'last') {
     if (oldOrderInColumn === oldColumnCardsQuantity) {
       throw HttpError(400, 'No data to update');
     }
@@ -154,7 +154,7 @@ const moveCardById = async (req, res, next) => {
     updatedColumns = [oldColumnCards];
   }
 
-  if (newColumnId === oldColumnId && newOrderInColumn !== 'null') {
+  if (newColumnId === oldColumnId && newOrderInColumn !== 'last') {
     if (newOrderInColumn > oldColumnCardsQuantity) {
       throw HttpError(
         400,
@@ -193,7 +193,7 @@ const moveCardById = async (req, res, next) => {
     updatedColumns = [oldColumnCards];
   }
 
-  if (newColumnId !== oldColumnId && newOrderInColumn === 'null') {
+  if (newColumnId !== oldColumnId && newOrderInColumn === 'last') {
     const oldColumnCardsToShift = await Card.find({
       columnId: oldColumnId,
       order: { $gt: oldOrderInColumn },
@@ -224,7 +224,7 @@ const moveCardById = async (req, res, next) => {
     updatedColumns = [oldColumnCards, newColumnCards];
   }
 
-  if (newColumnId !== oldColumnId && newOrderInColumn !== 'null') {
+  if (newColumnId !== oldColumnId && newOrderInColumn !== 'last') {
     if (newOrderInColumn > newColumnCardsQuantity) {
       throw HttpError(
         400,
