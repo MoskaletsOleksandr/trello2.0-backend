@@ -7,7 +7,6 @@ import {
 import { getBoardColumnsByOwnerAndBoard } from '../helpers/columnService.js';
 import HttpError from '../helpers/HttpError.js';
 import Card from '../models/card.js';
-import Column from '../models/column.js';
 
 const getBoardCards = async (req, res) => {
   const { id } = req.user;
