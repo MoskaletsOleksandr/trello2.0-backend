@@ -17,4 +17,6 @@ userRouter.patch('/theme', authenticate, userController.updateTheme);
 
 userRouter.patch('/board', authenticate, userController.updateCurrentBoardId);
 
+userRouter.get('/wakeUp', userController.wakeUpBackend);
+
 export default userRouter;
