@@ -55,7 +55,7 @@ const createNewCard = async (req, res) => {
 
 const updateCardById = async (req, res) => {
   const { cardId } = req.params;
-  const { title, text, priority, deadline, boardId, columnId } = req.body;
+  const { title, text, priority, deadline } = req.body;
   const normalizedTitle = title.trim();
 
   const cardToUpdate = await Card.findById(cardId);
@@ -92,7 +92,7 @@ const updateCardById = async (req, res) => {
   res.status(200).json(updatedCard);
 };
 
-const moveCardById = async (req, res, next) => {
+const moveCardById = async (req, res) => {
   const { id } = req.user;
   const { cardId } = req.params;
   const { newColumnId, newOrderInColumn } = req.body;
@@ -275,7 +275,7 @@ const moveCardById = async (req, res, next) => {
   res.status(200).json(updatedColumns);
 };
 
-const deleteCardById = async (req, res, next) => {
+const deleteCardById = async (req, res) => {
   const { id } = req.user;
   const { cardId } = req.params;
 
