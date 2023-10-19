@@ -2,257 +2,257 @@ export const backgrounds = [
   {
     _id: 'background1',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499659/Bg_1_desktop_1x_vpdydo.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656437/trello2.0/backgrounds/background1/Bg_1_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499678/Bg_1_desktop_2x_nkpbsx.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499650/Bg_1_mobile_1x_nuverk.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499667/Bg_1_mobile_2x_kglhzq.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656242/trello2.0/backgrounds/background1/Bg_1_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499657/Bg_1_tablet_1x_sbqnkl.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656726/trello2.0/backgrounds/background1/Bg_1_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499673/Bg_1_tablet_2x_z2hp1n.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656773/trello2.0/backgrounds/background1/Bg_1_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656590/trello2.0/backgrounds/background1/Bg_1_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656649/trello2.0/backgrounds/background1/Bg_1_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504412/Vector-4_wnlmdy.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656869/trello2.0/backgrounds/background1/Bg_1_preview.png',
   },
   {
     _id: 'background2',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499669/Bg_2_desktop_1x_a80iqa.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697656984/trello2.0/backgrounds/background2/Bg_2_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499687/Bg_2_desktop_2x_zauwdx.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499683/Bg_4_mobile_1x_spx6ju.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499691/Bg_4_mobile_2x_g3hdg3.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657034/trello2.0/backgrounds/background2/Bg_2_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499678/Bg_2_tablet_1x_y8xbu5.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657177/trello2.0/backgrounds/background2/Bg_2_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499666/Bg_2_tablet_2x_tjri5d.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657217/trello2.0/backgrounds/background2/Bg_2_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657083/trello2.0/backgrounds/background2/Bg_2_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657132/trello2.0/backgrounds/background2/Bg_2_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504407/Vector-2_qromfp.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701344/trello2.0/backgrounds/background2/Bg_2_preview.png',
   },
   {
     _id: 'background3',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499649/Bg_3_desktop_1x_msdnce.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657548/trello2.0/backgrounds/background3/Bg_3_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499677/Bg_3_desktop_2x_hpykfi.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499752/Bg_12_mobile_1x_mw81jx.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499793/Bg_14_mobile_2x_flaet3.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657500/trello2.0/backgrounds/background3/Bg_3_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499681/Bg_3_tablet_1x_f6d9mk.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657833/trello2.0/backgrounds/background3/Bg_3_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499702/Bg_3_tablet_2x_y9yeww.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657877/trello2.0/backgrounds/background3/Bg_3_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657587/trello2.0/backgrounds/background3/Bg_3_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657770/trello2.0/backgrounds/background3/Bg_3_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504444/Vector-8_azeybd.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697657927/trello2.0/backgrounds/background3/Bg_3_preview.png',
   },
   {
     _id: 'background4',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499682/Bg_4_desktop_1x_q2zios.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658016/trello2.0/backgrounds/background4/Bg_4_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499694/Bg_4_desktop_2x_dfxqhz.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499692/Bg_5_mobile_1x_wmqlnb.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499697/Bg_5_mobile_2x_i0erdy.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658055/trello2.0/backgrounds/background4/Bg_4_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499686/Bg_4_tablet_1x_o1k7nk.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658199/trello2.0/backgrounds/background4/Bg_4_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499690/Bg_4_tablet_2x_nf3gb6.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658236/trello2.0/backgrounds/background4/Bg_4_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658125/trello2.0/backgrounds/background4/Bg_4_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658161/trello2.0/backgrounds/background4/Bg_4_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504449/Vector-10_jw5evf.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658287/trello2.0/backgrounds/background4/Bg_4_preview.png',
   },
   {
     _id: 'background5',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499693/Bg_5_desktop_1x_lxda1y.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658348/trello2.0/backgrounds/background5/Bg_5_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499699/Bg_5_desktop_2x_zyhywi.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499700/Bg_6_mobile_1x_fhcr7j.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499706/Bg_6_mobile_2x_b870ra.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658386/trello2.0/backgrounds/background5/Bg_5_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499694/Bg_5_tablet_1x_ltwgit.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658532/trello2.0/backgrounds/background5/Bg_5_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499705/Bg_5_tablet_2x_dgxrki.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658566/trello2.0/backgrounds/background5/Bg_5_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658421/trello2.0/backgrounds/background5/Bg_5_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658461/trello2.0/backgrounds/background5/Bg_5_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504467/Vector-14_gowpxb.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658616/trello2.0/backgrounds/background5/Bg_5_preview.png',
   },
   {
     _id: 'background6',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499699/Bg_6_desktop_1x_fribr5.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658676/trello2.0/backgrounds/background6/Bg_6_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499700/Bg_6_desktop_2x_h7vicd.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499672/Bg_2_mobile_1x_hatfdh.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499682/Bg_2_mobile_2x_ilhcly.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658736/trello2.0/backgrounds/background6/Bg_6_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499702/Bg_6_tablet_1x_fteuxh.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658878/trello2.0/backgrounds/background6/Bg_6_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499715/Bg_6_tablet_2x_dyfntw.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658953/trello2.0/backgrounds/background6/Bg_6_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658785/trello2.0/backgrounds/background6/Bg_6_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697658824/trello2.0/backgrounds/background6/Bg_6_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504410/Vector-3_qcw8me.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659000/trello2.0/backgrounds/background6/Bg_6_preview.png',
   },
   {
     _id: 'background7',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499705/Bg_7_desktop_1x_td3z2z.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659619/trello2.0/backgrounds/background7/Bg_7_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499715/Bg_7_desktop_2x_vctr8r.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499669/Bg_3_mobile_1x_vumq5h.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499678/Bg_3_mobile_2x_yffvtg.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659660/trello2.0/backgrounds/background7/Bg_7_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499710/Bg_7_tablet_1x_mccagu.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659771/trello2.0/backgrounds/background7/Bg_7_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499737/Bg_7_tablet_2x_f8gwto.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659799/trello2.0/backgrounds/background7/Bg_7_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659701/trello2.0/backgrounds/background7/Bg_7_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659738/trello2.0/backgrounds/background7/Bg_7_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504403/Vector_axp1ym.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659843/trello2.0/backgrounds/background7/Bg_7_preview.png',
   },
   {
     _id: 'background8',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499716/Bg_8_desktop_1x_pdq967.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697659898/trello2.0/backgrounds/background8/Bg_8_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499723/Bg_8_desktop_2x_goskpf.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499740/Bg_11_mobile_1x_vy3rnh.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499797/Bg_15_mobile_2x_mjgizt.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660022/trello2.0/backgrounds/background8/Bg_8_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499718/Bg_8_tablet_1x_uidygu.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660148/trello2.0/backgrounds/background8/Bg_8_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499737/Bg_8_tablet_2x_doksaw.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660184/trello2.0/backgrounds/background8/Bg_8_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660071/trello2.0/backgrounds/background8/Bg_8_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660113/trello2.0/backgrounds/background8/Bg_8_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504439/Vector-6_iklepy.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660239/trello2.0/backgrounds/background8/Bg_8_preview.png',
   },
   {
     _id: 'background9',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499728/Bg_9_desktop_1x_oemsuo.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660298/trello2.0/backgrounds/background9/Bg_9_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499731/Bg_9_desktop_2x_arfl24.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499773/Bg_14_mobile_1x_u7fpv8.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499761/Bg_12_mobile_2x_xhvfq6.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660332/trello2.0/backgrounds/background9/Bg_9_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499737/Bg_9_tablet_1x_rwjwie.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660444/trello2.0/backgrounds/background9/Bg_9_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499754/Bg_9_tablet_2x_oj6is5.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660475/trello2.0/backgrounds/background9/Bg_9_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660371/trello2.0/backgrounds/background9/Bg_9_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660407/trello2.0/backgrounds/background9/Bg_9_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504462/Vector-12_jcfyt5.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697660516/trello2.0/backgrounds/background9/Bg_9_preview.png',
   },
   {
     _id: 'background10',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499731/Bg_10_desktop_1x_znu9mb.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701605/trello2.0/backgrounds/background10/Bg_10_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499737/Bg_10_desktop_2x_hdm8yb.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499705/Bg_7_mobile_1x_gksuht.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499710/Bg_7_mobile_2x_hyxaau.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701649/trello2.0/backgrounds/background10/Bg_10_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499742/Bg_10_tablet_1x_ckdsxp.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701751/trello2.0/backgrounds/background10/Bg_10_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499751/Bg_10_tablet_2x_rne4r5.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701790/trello2.0/backgrounds/background10/Bg_10_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701686/trello2.0/backgrounds/background10/Bg_10_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701719/trello2.0/backgrounds/background10/Bg_10_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504405/Vector-1_kyz3cu.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701854/trello2.0/backgrounds/background10/Bg_10_preview.png',
   },
   {
     _id: 'background11',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499741/Bg_11_desktop_1x_lb79gg.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701904/trello2.0/backgrounds/background11/Bg_11_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499762/Bg_11_desktop_2x_zrerkp.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499728/Bg_9_mobile_1x_tsnkq0.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499728/Bg_9_mobile_2x_soyj4q.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701937/trello2.0/backgrounds/background11/Bg_11_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499744/Bg_11_tablet_1x_o4xq4f.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702037/trello2.0/backgrounds/background11/Bg_11_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499769/Bg_11_tablet_2x_wjguez.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702068/trello2.0/backgrounds/background11/Bg_11_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697701974/trello2.0/backgrounds/background11/Bg_11_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702008/trello2.0/backgrounds/background11/Bg_11_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504416/Vector-5_hu1zid.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702108/trello2.0/backgrounds/background11/Bg_11_preview.png',
   },
   {
     _id: 'background12',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499748/Bg_12_desktop_1x_yvpwya.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702162/trello2.0/backgrounds/background12/Bg_12_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499761/Bg_12_desktop_2x_exngtj.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499734/Bg_10_mobile_1x_x4ycmo.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499738/Bg_10_mobile_2x_jqmxif.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702193/trello2.0/backgrounds/background12/Bg_12_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499755/Bg_12_tablet_1x_pdsnrb.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702315/trello2.0/backgrounds/background12/Bg_12_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499775/Bg_12_tablet_2x_k9qer9.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702516/trello2.0/backgrounds/background12/Bg_12_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702239/trello2.0/backgrounds/background12/Bg_12_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702284/trello2.0/backgrounds/background12/Bg_12_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504442/Vector-7_wqlarc.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702552/trello2.0/backgrounds/background12/Bg_12_preview.png',
   },
   {
     _id: 'background13',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499762/Bg_13_desktop_1x_hlycuj.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702620/trello2.0/backgrounds/background13/Bg_13_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499792/Bg_13_desktop_2x_giwmny.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499764/Bg_13_mobile_1x_yb0vwq.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499749/Bg_11_mobile_2x_xrkirs.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702659/trello2.0/backgrounds/background13/Bg_13_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499769/Bg_13_tablet_1x_p8wjvy.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702797/trello2.0/backgrounds/background13/Bg_13_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499783/Bg_13_tablet_2x_jiiidv.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702874/trello2.0/backgrounds/background13/Bg_13_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702689/trello2.0/backgrounds/background13/Bg_13_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702731/trello2.0/backgrounds/background13/Bg_13_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504447/Vector-9_g2vlci.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702939/trello2.0/backgrounds/background13/Bg_13_preview.png',
   },
   {
     _id: 'background14',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499775/Bg_14_desktop_1x_tc4tfr.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697702991/trello2.0/backgrounds/background14/Bg_14_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499793/Bg_14_desktop_2x_wtwici.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499790/Bg_15_mobile_1x_huexrh.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499769/Bg_13_mobile_2x_l1ivea.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703044/trello2.0/backgrounds/background14/Bg_14_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499781/Bg_14_tablet_1x_mswonp.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703150/trello2.0/backgrounds/background14/Bg_14_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499799/Bg_14_tablet_2x_mtmzby.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703182/trello2.0/backgrounds/background14/Bg_14_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703079/trello2.0/backgrounds/background14/Bg_14_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703111/trello2.0/backgrounds/background14/Bg_14_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504452/Vector-11_m33t4c.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703230/trello2.0/backgrounds/background14/Bg_14_preview.png',
   },
   {
     _id: 'background15',
     desktopURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499787/Bg_15_desktop_1x_ciai5p.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703280/trello2.0/backgrounds/background15/Bg_15_desktop_1x.png',
     desktopRetainaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499800/Bg_15_desktop_2x_jvos6m.png',
-    mobileURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499713/Bg_8_mobile_1x_bmijax.png',
-    mobileRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499723/Bg_8_mobile_2x_cyqfl1.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703319/trello2.0/backgrounds/background15/Bg_15_desktop_2x.png',
     tabletURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499797/Bg_15_tablet_1x_j5yukx.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703413/trello2.0/backgrounds/background15/Bg_15_tablet_1x.png',
     tabletRetinaURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693499802/Bg_15_tablet_2x_aw8sxg.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703446/trello2.0/backgrounds/background15/Bg_15_tablet_2x.png',
+    mobileURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703355/trello2.0/backgrounds/background15/Bg_15_mobile_1x.png',
+    mobileRetinaURL:
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703386/trello2.0/backgrounds/background15/Bg_15_mobile_2x.png',
     previewURL:
-      'https://res.cloudinary.com/dms1qdhsy/image/upload/v1693504465/Vector-13_yqhonq.png',
+      'https://res.cloudinary.com/do7vvnlbr/image/upload/v1697703485/trello2.0/backgrounds/background15/Bg_15_preview.png',
   },
 ];
 
