@@ -123,9 +123,8 @@ const refresh = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   const { id } = req.user;
-  const { newName, newEmil } = req.body;
+  const { newName, newEmail } = req.body;
   const userToUpdate = await User.findById(id);
-  console.log('req.file: ', req.file);
 
   if (!userToUpdate) {
     throw HttpError(
@@ -138,8 +137,8 @@ const updateUser = async (req, res, next) => {
   if (newName && newName !== userToUpdate.name) {
     updatedFields.name = newName;
   }
-  if (newEmil && newEmil !== userToUpdate.email) {
-    updatedFields.email = newEmil;
+  if (newEmail && newEmail !== userToUpdate.email) {
+    updatedFields.email = newEmail;
   }
   if (req.file) {
     updatedFields.avatarUrl = await uploadAvatar(req, res);
