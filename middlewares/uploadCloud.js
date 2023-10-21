@@ -13,7 +13,7 @@ cloudinary.config({
 
 const multerStorage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'avatars',
+  folder: 'trello2.0/avatars',
   allowedFormats: ['jpg', 'png'],
   filename: (req, file, cb) => {
     cb(null, file.originalname);

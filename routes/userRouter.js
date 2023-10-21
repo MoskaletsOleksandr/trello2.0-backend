@@ -25,6 +25,8 @@ userRouter.patch('/theme', authenticate, userController.updateTheme);
 
 userRouter.patch('/board', authenticate, userController.updateCurrentBoardId);
 
+userRouter.post('/letter', authenticate, userController.sendLetter);
+
 userRouter.get('/wakeUp', userController.wakeUpBackend);
 
 export default userRouter;

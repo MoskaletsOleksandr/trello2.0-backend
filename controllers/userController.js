@@ -12,6 +12,8 @@ import bcrypt from 'bcryptjs';
 import HttpError from '../helpers/HttpError.js';
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
 import uploadAvatar from '../helpers/uploadAvatar.js';
+import createEmail from '../helpers/createEmail.js';
+import sendEmail from '../helpers/sendEmail.js';
 
 const register = async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -177,6 +179,18 @@ const updateTheme = async (req, res, next) => {
   });
 };
 
+const sendLetter = async (req, res, next) => {
+  const { email, feedback } = req.body;
+
+  const newEmail = createEmail(email, feedback);
+  await sendEmail(newEmail);
+
+  res.status(200).json({
+    message:
+      'Your feedback has been successfully received. You will receive a confirmation email at the provided address.',
+  });
+};
+
 const updateCurrentBoardId = async (req, res, next) => {
   const { boardId } = req.body;
   const { id } = req.user;
@@ -211,5 +225,6 @@ export default {
   updateUser: ctrlWrapper(updateUser),
   updateTheme: ctrlWrapper(updateTheme),
   updateCurrentBoardId: ctrlWrapper(updateCurrentBoardId),
+  sendLetter: ctrlWrapper(sendLetter),
   wakeUpBackend: ctrlWrapper(wakeUpBackend),
 };
