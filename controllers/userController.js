@@ -11,6 +11,7 @@ import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
 import HttpError from '../helpers/HttpError.js';
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
+import uploadAvatar from '../helpers/uploadAvatar.js';
 
 const register = async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -120,6 +121,41 @@ const refresh = async (req, res, next) => {
   });
 };
 
+const updateUser = async (req, res, next) => {
+  const { id } = req.user;
+  const { newName, newEmil } = req.body;
+  const userToUpdate = await User.findById(id);
+  console.log('req.file: ', req.file);
+
+  if (!userToUpdate) {
+    throw HttpError(
+      401,
+      `An error occurred while updating user data. User with id ${id} not found`
+    );
+  }
+
+  const updatedFields = {};
+  if (newName && newName !== userToUpdate.name) {
+    updatedFields.name = newName;
+  }
+  if (newEmil && newEmil !== userToUpdate.email) {
+    updatedFields.email = newEmil;
+  }
+  if (req.file) {
+    updatedFields.avatarUrl = await uploadAvatar(req, res);
+  }
+
+  if (Object.keys(updatedFields).length === 0) {
+    throw HttpError(400, 'No fields to update');
+  }
+
+  const updatedUser = await User.findByIdAndUpdate(id, updatedFields, {
+    new: true,
+  });
+
+  res.status(200).json({ user: updatedUser });
+};
+
 const updateTheme = async (req, res, next) => {
   const { theme } = req.body;
   const { id } = req.user;
@@ -173,6 +209,7 @@ export default {
   login: ctrlWrapper(login),
   logout: ctrlWrapper(logout),
   refresh: ctrlWrapper(refresh),
+  updateUser: ctrlWrapper(updateUser),
   updateTheme: ctrlWrapper(updateTheme),
   updateCurrentBoardId: ctrlWrapper(updateCurrentBoardId),
   wakeUpBackend: ctrlWrapper(wakeUpBackend),
