@@ -12,8 +12,8 @@ import bcrypt from 'bcryptjs';
 import HttpError from '../helpers/HttpError.js';
 import ctrlWrapper from '../decorators/ctrlWrapper.js';
 import uploadAvatar from '../helpers/uploadAvatar.js';
-import createEmail from '../helpers/createEmail.js';
 import sendEmail from '../helpers/sendEmail.js';
+import createEmails from '../helpers/createEmails.js';
 
 const register = async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -182,8 +182,10 @@ const updateTheme = async (req, res, next) => {
 const sendLetter = async (req, res, next) => {
   const { email, feedback } = req.body;
 
-  const newEmail = createEmail(email, feedback);
-  await sendEmail(newEmail);
+  const emails = createEmails(email, feedback);
+  emails.forEach(async (email) => {
+    await sendEmail(email);
+  });
 
   res.status(200).json({
     message:
