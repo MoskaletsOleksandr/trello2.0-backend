@@ -15,6 +15,8 @@ import uploadAvatar from '../helpers/uploadAvatar.js';
 import sendEmail from '../helpers/sendEmail.js';
 import createEmails from '../helpers/createEmails.js';
 
+const { CLIENT_URL } = process.env;
+
 const register = async (req, res, next) => {
   const { name, email, password } = req.body;
   const candidate = await User.findOne({ email });
@@ -86,6 +88,24 @@ const logout = async (req, res, next) => {
 
   res.clearCookie('refreshToken');
   res.status(204).json({ message: 'No content' });
+};
+
+const googleAuth = async (req, res, next) => {
+  const user = req.user;
+
+  const payload = createPayload(user._id);
+  const tokens = generateTokens(payload);
+  const deviceId = generateDeviceId();
+  await saveToken(user._id, tokens.refreshToken, deviceId);
+
+  res.cookie('refreshToken', tokens.refreshToken, {
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+  });
+
+  res.redirect(`${CLIENT_URL}/trello2.0/welcome?deviceId=${deviceId}`);
 };
 
 const refresh = async (req, res, next) => {
@@ -223,6 +243,7 @@ export default {
   register: ctrlWrapper(register),
   login: ctrlWrapper(login),
   logout: ctrlWrapper(logout),
+  googleAuth: ctrlWrapper(googleAuth),
   refresh: ctrlWrapper(refresh),
   updateUser: ctrlWrapper(updateUser),
   updateTheme: ctrlWrapper(updateTheme),
