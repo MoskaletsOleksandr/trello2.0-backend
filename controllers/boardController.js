@@ -46,6 +46,7 @@ const createNewBoard = async (req, res, next) => {
 };
 
 const updateBoardById = async (req, res, next) => {
+  const { id } = req.user;
   const { boardId } = req.params;
   const { title, icon, backgroundId } = req.body;
   const normalizedTitle = title.trim();
@@ -54,6 +55,11 @@ const updateBoardById = async (req, res, next) => {
 
   if (!currentBoard) {
     throw HttpError(404, 'An error occurred. Board not found');
+  }
+
+  const board = await Board.findOne({ title: normalizedTitle, ownerId: id });
+  if (board) {
+    throw HttpError(409, 'A board with the same title already exists');
   }
 
   const updatedFields = {};

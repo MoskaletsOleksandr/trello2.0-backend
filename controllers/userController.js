@@ -14,6 +14,7 @@ import ctrlWrapper from '../decorators/ctrlWrapper.js';
 import uploadAvatar from '../helpers/uploadAvatar.js';
 import sendEmail from '../helpers/sendEmail.js';
 import createEmails from '../helpers/createEmails.js';
+import { buildUserObject } from '../helpers/userService.js';
 
 const { CLIENT_URL } = process.env;
 
@@ -31,6 +32,7 @@ const register = async (req, res, next) => {
   const tokens = generateTokens(payload);
   const deviceId = generateDeviceId();
   await saveToken(newUser._id, tokens.refreshToken, deviceId);
+  const accessToken = tokens.accessToken;
 
   res.cookie('refreshToken', tokens.refreshToken, {
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -39,13 +41,9 @@ const register = async (req, res, next) => {
     secure: true,
   });
   res.status(201).json({
-    user: {
-      id: newUser._id,
-      name,
-      email,
-    },
+    user: buildUserObject(newUser),
     deviceId,
-    ...tokens,
+    accessToken,
   });
 };
 
@@ -66,6 +64,7 @@ const login = async (req, res, next) => {
   const tokens = generateTokens(payload);
   const deviceId = generateDeviceId();
   await saveToken(user._id, tokens.refreshToken, deviceId);
+  const accessToken = tokens.accessToken;
 
   res.cookie('refreshToken', tokens.refreshToken, {
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -75,9 +74,9 @@ const login = async (req, res, next) => {
   });
 
   res.status(200).json({
-    user,
+    user: buildUserObject(user),
     deviceId,
-    ...tokens,
+    accessToken,
   });
 };
 
@@ -130,6 +129,7 @@ const refresh = async (req, res, next) => {
   const payload = createPayload(user._id);
   const tokens = generateTokens(payload);
   await saveToken(user._id, tokens.refreshToken, deviceId);
+  const accessToken = tokens.accessToken;
 
   res.cookie('refreshToken', tokens.refreshToken, {
     maxAge: 30 * 24 * 60 * 60 * 1000,
@@ -138,8 +138,8 @@ const refresh = async (req, res, next) => {
     secure: true,
   });
   res.status(200).json({
-    user,
-    ...tokens,
+    user: buildUserObject(user),
+    accessToken,
   });
 };
 
@@ -174,7 +174,9 @@ const updateUser = async (req, res, next) => {
     new: true,
   });
 
-  res.status(200).json({ user: updatedUser });
+  res.status(200).json({
+    user: buildUserObject(updatedUser),
+  });
 };
 
 const updateTheme = async (req, res, next) => {
@@ -208,8 +210,7 @@ const sendLetter = async (req, res, next) => {
   });
 
   res.status(200).json({
-    message:
-      'Your feedback has been successfully received. You will receive a confirmation email at the provided address.',
+    message: 'Your feedback has been successfully received.',
   });
 };
 

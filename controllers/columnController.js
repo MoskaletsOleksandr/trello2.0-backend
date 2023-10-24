@@ -45,6 +45,7 @@ const createNewColumn = async (req, res, next) => {
 };
 
 const updateColumnById = async (req, res, next) => {
+  const { id } = req.user;
   const { columnId } = req.params;
   const { title } = req.body;
   const normalizedTitle = title.trim();
@@ -53,6 +54,21 @@ const updateColumnById = async (req, res, next) => {
 
   if (!columnToUpdate) {
     throw HttpError(404, 'An error occurred. Column not found');
+  }
+
+  const boardColumns = await Column.find({
+    ownerId: id,
+    boardId: columnToUpdate.boardId,
+  });
+
+  const column = boardColumns.find(
+    (column) => column.title === normalizedTitle
+  );
+  if (column) {
+    throw HttpError(
+      409,
+      'A column with the same title already exists on this board'
+    );
   }
 
   if (!title || normalizedTitle === columnToUpdate.title) {
