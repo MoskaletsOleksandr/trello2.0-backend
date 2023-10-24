@@ -5,5 +5,6 @@ export const buildUserObject = (user) => {
     email: user.email,
     avatarUrl: user.avatarUrl,
     theme: user.theme,
+    currentBoardId: user.currentBoardId,
   };
 };
