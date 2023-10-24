@@ -58,7 +58,7 @@ const updateBoardById = async (req, res, next) => {
   }
 
   const board = await Board.findOne({ title: normalizedTitle, ownerId: id });
-  if (board) {
+  if (board && board._id.toString() !== currentBoard._id.toString()) {
     throw HttpError(409, 'A board with the same title already exists');
   }
 

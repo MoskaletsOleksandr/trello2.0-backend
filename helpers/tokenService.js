@@ -10,7 +10,7 @@ export const generateTokens = (payload) => {
     expiresIn: '30s',
   });
   const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
-    expiresIn: '5m',
+    expiresIn: '2m',
   });
 
   return {
