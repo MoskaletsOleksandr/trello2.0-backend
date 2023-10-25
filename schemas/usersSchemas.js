@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const userRegisterSchema = Joi.object({
   name: Joi.string()
-    .pattern(new RegExp('^[A-Za-z]+$'))
+    .pattern(new RegExp('^[A-Za-z\\s]+$'))
     .required()
     .max(29)
     .messages({
@@ -86,10 +86,32 @@ const userSendLetterSchema = Joi.object({
   }),
 });
 
+const userUpdateSchema = Joi.object({
+  newEmail: Joi.string().required().email().max(49).messages({
+    'any.required': 'Missing required newEmail field!',
+    'string.email': 'Invalid email format!',
+    'string.base': 'NewEmail must be a string!',
+    'string.max': 'NewEmail must not exceed 49 characters!',
+  }),
+  newName: Joi.string()
+    .pattern(new RegExp('^[A-Za-z\\s]+$'))
+    .required()
+    .max(29)
+    .messages({
+      'any.required': 'Missing required newName field!',
+      'string.empty': "Name can't be empty!",
+      'string.base': 'NewName must be a string!',
+      'string.max': 'NewName must not exceed 29 characters!',
+      'string.pattern.base': 'NewName can only contain letters',
+    }),
+  avatar: Joi.any(),
+});
+
 export default {
   userRegisterSchema,
   userLoginSchema,
   userUpdateThemeSchema,
   userUpdateCurrentBoardIdSchema,
   userSendLetterSchema,
+  userUpdateSchema,
 };

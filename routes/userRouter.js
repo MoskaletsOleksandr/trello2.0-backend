@@ -45,6 +45,7 @@ userRouter.put(
   authenticate,
   uploadCloud.single('avatar'),
   checkFileType(['image/jpeg', 'image/png']),
+  validateBody(usersSchemas.userUpdateSchema),
   userController.updateUser
 );
 
