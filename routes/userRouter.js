@@ -7,6 +7,7 @@ import passport from '../middlewares/google-authenticate.js';
 import validateBody from '../decorators/validateBody.js';
 import usersSchemas from '../schemas/usersSchemas.js';
 import isEmptyBody from '../middlewares/isEmptyBody.js';
+import checkFileType from '../middlewares/checkFileType.js';
 
 const userRouter = express.Router();
 
@@ -43,6 +44,7 @@ userRouter.put(
   '/update',
   authenticate,
   uploadCloud.single('avatar'),
+  checkFileType(['image/jpeg', 'image/png']),
   userController.updateUser
 );
 

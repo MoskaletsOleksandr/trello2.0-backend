@@ -15,6 +15,7 @@ import uploadAvatar from '../helpers/uploadAvatar.js';
 import sendEmail from '../helpers/sendEmail.js';
 import createEmails from '../helpers/createEmails.js';
 import { buildUserObject } from '../helpers/userService.js';
+import { fileTypeFromBuffer } from 'file-type';
 
 const { CLIENT_URL } = process.env;
 
@@ -162,7 +163,15 @@ const updateUser = async (req, res, next) => {
   if (newEmail && newEmail !== userToUpdate.email) {
     updatedFields.email = newEmail;
   }
-  if (req.file) {
+
+  const avatarFile = req.file;
+  if (avatarFile) {
+    const fileTypeData = await fileTypeFromBuffer(avatarFile.buffer);
+
+    if (!fileTypeData || !fileTypeData.mime.startsWith('image/')) {
+      throw HttpError(400, 'Invalid file format. Only images are allowed');
+    }
+
     updatedFields.avatarUrl = await uploadAvatar(req, res);
   }
 
