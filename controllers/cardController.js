@@ -33,8 +33,14 @@ const getBoardCards = async (req, res) => {
 
 const createNewCard = async (req, res) => {
   const { id } = req.user;
-  const { boardId, columnId, deadline } = req.body;
+  const { boardId, columnId, priority, deadline, text, title } = req.body;
 
+  if (!boardId || !columnId || !priority || !deadline || !text || !title) {
+    throw HttpError(
+      400,
+      `An error occurred while creating a card. Not all data is provided`
+    );
+  }
   if (!deadline.match(deadlinePattern)) {
     throw HttpError(400, 'Invalid date format');
   }
@@ -56,6 +62,13 @@ const createNewCard = async (req, res) => {
 const updateCardById = async (req, res) => {
   const { cardId } = req.params;
   const { title, text, priority, deadline } = req.body;
+
+  if (!priority || !deadline || !text || !title) {
+    throw HttpError(
+      400,
+      `An error occurred while updating a card. Not all data is provided`
+    );
+  }
   const normalizedTitle = title.trim();
 
   const cardToUpdate = await Card.findById(cardId);
@@ -96,6 +109,13 @@ const moveCardById = async (req, res) => {
   const { id } = req.user;
   const { cardId } = req.params;
   const { newColumnId, newOrderInColumn } = req.body;
+
+  if (!newColumnId || !newOrderInColumn) {
+    throw HttpError(
+      400,
+      `An error occurred while moving a card. Not all data is provided`
+    );
+  }
   let updatedColumns;
 
   const cardToUpdate = await Card.findById(cardId);
