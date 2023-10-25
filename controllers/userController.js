@@ -247,8 +247,6 @@ const sendLetter = async (req, res, next) => {
 
 const updateCurrentBoardId = async (req, res, next) => {
   const { boardId } = req.body;
-  console.log('req.body: ', req.body);
-  console.log('boardId: ', boardId);
   const { id } = req.user;
 
   if (!boardId) {

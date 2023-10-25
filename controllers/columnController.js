@@ -18,6 +18,12 @@ const createNewColumn = async (req, res, next) => {
   const { title, boardId } = req.body;
   const normalizedTitle = title.trim();
 
+  if (!title || !boardId) {
+    throw HttpError(
+      400,
+      `An error occurred while creating a column. Not all data is provided`
+    );
+  }
   const boardColumns = await Column.find({ ownerId: id, boardId });
 
   const column = boardColumns.find(
@@ -48,6 +54,13 @@ const updateColumnById = async (req, res, next) => {
   const { id } = req.user;
   const { columnId } = req.params;
   const { title } = req.body;
+
+  if (!title) {
+    throw HttpError(
+      400,
+      `An error occurred while updating a column. Missing required title field`
+    );
+  }
   const normalizedTitle = title.trim();
 
   const columnToUpdate = await Column.findById(columnId);

@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const boardCreateNewBoardSchema = Joi.object({
+const createNewBoardSchema = Joi.object({
   title: Joi.string().required().max(15).messages({
     'any.required': 'Missing required title field!',
     'string.empty': "Title can't be empty!",
@@ -52,7 +52,7 @@ const boardCreateNewBoardSchema = Joi.object({
     }),
 });
 
-const boardUpdateBoardSchema = Joi.object({
+const updateBoardSchema = Joi.object({
   title: Joi.string().required().max(15).messages({
     'any.required': 'Missing required title field!',
     'string.empty': "Title can't be empty!",
@@ -105,6 +105,6 @@ const boardUpdateBoardSchema = Joi.object({
 });
 
 export default {
-  boardCreateNewBoardSchema,
-  boardUpdateBoardSchema,
+  createNewBoardSchema,
+  updateBoardSchema,
 };

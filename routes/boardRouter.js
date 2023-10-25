@@ -14,7 +14,7 @@ boardsRouter.post(
   '/',
   authenticate,
   isEmptyBody,
-  validateBody(boardSchemas.boardCreateNewBoardSchema),
+  validateBody(boardSchemas.createNewBoardSchema),
   boardController.createNewBoard
 );
 
@@ -35,7 +35,8 @@ boardsRouter.put(
   '/:boardId',
   authenticate,
   isValidBoardId,
-  validateBody(boardSchemas.boardUpdateBoardSchema),
+  isEmptyBody,
+  validateBody(boardSchemas.updateBoardSchema),
   boardController.updateBoardById
 );
 
