@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const userRegisterSchema = Joi.object({
   name: Joi.string()
-    .pattern(new RegExp('^[A-Za-z\\s]+$'))
+    .pattern(new RegExp('^[A-Za-zА-Яа-я\\s]+$'))
     .required()
     .max(29)
     .messages({
@@ -95,7 +95,7 @@ const userUpdateSchema = Joi.object({
     'string.max': 'NewEmail must not exceed 49 characters!',
   }),
   newName: Joi.string()
-    .pattern(new RegExp('^[A-Za-z\\s]+$'))
+    .pattern(new RegExp('^[A-Za-zА-Яа-я\\s]+$'))
     .required()
     .max(29)
     .messages({
