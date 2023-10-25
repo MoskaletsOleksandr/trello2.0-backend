@@ -55,15 +55,16 @@ const userUpdateThemeSchema = Joi.object({
 });
 
 const userUpdateCurrentBoardIdSchema = Joi.object({
-  boardId: Joi.string()
-    .regex(/^[0-9a-fA-F]{24}$/)
-    .required()
-    .messages({
-      'string.base': 'BoardId must be a string',
-      'string.empty': 'BoardId cannot be empty',
-      'any.required': 'BoardId is required',
-      'string.pattern.base': 'BoardId must be a valid MongoDB identifier',
-    }),
+  boardId: Joi.alternatives(
+    Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+    Joi.string().valid('null')
+  ).messages({
+    'string.base': 'BoardId must be a string',
+    'string.empty': 'BoardId cannot be empty',
+    'any.required': 'BoardId is required',
+    'string.pattern.base':
+      'BoardId must be a valid MongoDB identifier or "null"',
+  }),
 });
 
 const userSendLetterSchema = Joi.object({

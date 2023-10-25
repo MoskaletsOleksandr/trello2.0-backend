@@ -24,7 +24,14 @@ const getBoardById = async (req, res, next) => {
 
 const createNewBoard = async (req, res, next) => {
   const { id } = req.user;
-  const { title, backgroundId } = req.body;
+  const { title, backgroundId, icon } = req.body;
+
+  if (!title || !backgroundId || !icon) {
+    throw HttpError(
+      400,
+      `An error occurred while creating the board. Not all data is provided`
+    );
+  }
   const normalizedTitle = title.trim();
 
   const board = await Board.findOne({ title: normalizedTitle, ownerId: id });

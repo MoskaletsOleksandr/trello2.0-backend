@@ -5,7 +5,7 @@ import extractDeviceId from '../middlewares/extractDeviceId.js';
 import uploadCloud from '../middlewares/uploadCloud.js';
 import passport from '../middlewares/google-authenticate.js';
 import validateBody from '../decorators/validateBody.js';
-import usersSchemas from '../schemas/usersSchemas.js';
+import userSchemas from '../schemas/userSchemas.js';
 import isEmptyBody from '../middlewares/isEmptyBody.js';
 import checkFileType from '../middlewares/checkFileType.js';
 
@@ -14,14 +14,14 @@ const userRouter = express.Router();
 userRouter.post(
   '/register',
   isEmptyBody,
-  validateBody(usersSchemas.userRegisterSchema),
+  validateBody(userSchemas.userRegisterSchema),
   userController.register
 );
 
 userRouter.post(
   '/login',
   isEmptyBody,
-  validateBody(usersSchemas.userLoginSchema),
+  validateBody(userSchemas.userLoginSchema),
   userController.login
 );
 
@@ -45,7 +45,8 @@ userRouter.put(
   authenticate,
   uploadCloud.single('avatar'),
   checkFileType(['image/jpeg', 'image/png']),
-  validateBody(usersSchemas.userUpdateSchema),
+  isEmptyBody,
+  validateBody(userSchemas.userUpdateSchema),
   userController.updateUser
 );
 
@@ -53,7 +54,7 @@ userRouter.patch(
   '/theme',
   authenticate,
   isEmptyBody,
-  validateBody(usersSchemas.userUpdateThemeSchema),
+  validateBody(userSchemas.userUpdateThemeSchema),
   userController.updateTheme
 );
 
@@ -61,7 +62,7 @@ userRouter.patch(
   '/board',
   authenticate,
   isEmptyBody,
-  validateBody(usersSchemas.userUpdateCurrentBoardIdSchema),
+  validateBody(userSchemas.userUpdateCurrentBoardIdSchema),
   userController.updateCurrentBoardId
 );
 
@@ -69,7 +70,7 @@ userRouter.post(
   '/letter',
   authenticate,
   isEmptyBody,
-  validateBody(usersSchemas.userSendLetterSchema),
+  validateBody(userSchemas.userSendLetterSchema),
   userController.sendLetter
 );
 
