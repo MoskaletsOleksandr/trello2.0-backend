@@ -182,6 +182,21 @@ const updateUser = async (req, res, next) => {
 const updateTheme = async (req, res, next) => {
   const { theme } = req.body;
   const { id } = req.user;
+
+  if (!theme) {
+    throw HttpError(
+      400,
+      `An error occurred while updating the theme. Missing theme field`
+    );
+  }
+
+  if (theme !== 'dark' && theme !== 'light' && theme !== 'violet') {
+    throw HttpError(
+      400,
+      `An error occurred while updating the theme. Invalid theme value`
+    );
+  }
+
   const user = await User.findByIdAndUpdate(
     id,
     { theme: theme },
@@ -202,9 +217,16 @@ const updateTheme = async (req, res, next) => {
 };
 
 const sendLetter = async (req, res, next) => {
-  const { email, feedback } = req.body;
+  const { body } = req;
 
-  const emails = createEmails(email, feedback);
+  if (!body.feedback) {
+    throw HttpError(
+      400,
+      `An error occurred while sending feedback. Missing feedback fied`
+    );
+  }
+
+  const emails = createEmails(body?.email, body.feedback);
   emails.forEach(async (email) => {
     await sendEmail(email);
   });
@@ -217,6 +239,14 @@ const sendLetter = async (req, res, next) => {
 const updateCurrentBoardId = async (req, res, next) => {
   const { boardId } = req.body;
   const { id } = req.user;
+
+  if (!boardId) {
+    throw HttpError(
+      400,
+      `An error occurred while updating the theme. Missing boardId field`
+    );
+  }
+
   const user = await User.findByIdAndUpdate(
     id,
     { currentBoardId: boardId },
