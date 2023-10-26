@@ -2,6 +2,18 @@
 
 ---
 
+## Table of Contents
+
+- [Description](#description)
+- [Instructions for Installing and Running Trello 2.0 Locally](#instructions-for-installing-and-running-trello-20-locally)
+- [Backend Technologies Used](#backend-technologies-used)
+- [Project Structure](#project-structure)
+- [How It Works](#how-it-works)
+- [My Future Plans](#my-future-plans)
+- [License](#license)
+
+---
+
 ## _Description_
 
 **Trello2.0-Backend** is the backend component of an educational project created to support the Trello2.0 application. This project has no commercial purposes and is intended solely for education.
