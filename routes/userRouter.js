@@ -3,7 +3,7 @@ import userController from '../controllers/userController.js';
 import authenticate from '../middlewares/authenticate.js';
 import extractDeviceId from '../middlewares/extractDeviceId.js';
 import uploadCloud from '../middlewares/uploadCloud.js';
-import passport from '../middlewares/google-authenticate.js';
+import passport from '../middlewares/googleAuthenticate.js';
 import validateBody from '../decorators/validateBody.js';
 import userSchemas from '../schemas/userSchemas.js';
 import isEmptyBody from '../middlewares/isEmptyBody.js';
