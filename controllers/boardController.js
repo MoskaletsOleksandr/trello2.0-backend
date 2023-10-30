@@ -29,7 +29,7 @@ const createNewBoard = async (req, res, next) => {
   if (!title || !backgroundId || !icon) {
     throw HttpError(
       400,
-      `An error occurred while creating the board. Not all data is provided`
+      `An error occurred while creating a board. Not all data is provided`
     );
   }
   const normalizedTitle = title.trim();
